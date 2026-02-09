@@ -1,38 +1,49 @@
 # GLIDE Simulation Framework
 
-This repository contains early-stage physics and numerical models supporting GLIDE,
-an orbital-scale momentum exchange and electrodynamic reboost concept focused on
-reducing propellant dependence for in-space maneuvering.
+This repository contains early-stage physics, controls, and numerical models supporting **GLIDE**: a propellant-independence concept for in-space maneuvering using tether-based effects (electrodynamic tether authority, momentum exchange) and capture-oriented rendezvous logic.
 
-The goal of this project is to explore feasibility, scaling behavior, and energy
-constraints of tether-based orbital logistics using simplified but physically
-grounded models.
+This codebase is a **research and exploration environment**, not a flight-ready simulator. Assumptions are explicit and evolve as models mature.
 
-This repository is intended as a research and exploration environment rather than
-a flight-ready simulator.
+## What’s “GLIDE V4” in this repo?
+
+**GLIDE V4** is the current working architecture focused on **propellant-less maneuvering for the payload** via:
+
+- a reusable guidance **Tag** providing midcourse authority (e.g., DDM + mini-EDT modeled authority), and
+- **receiver-side terminal capture control** enforcing strict relative-speed limits through corridor entry → pre-capture → latch gates.
+
+V4 work emphasizes **dispersion recovery**, **corridor entry**, and **terminal closure** validated with Monte Carlo campaigns and gate-speed constraint checks.
+
+> NOTE: V4 does *not* imply a full operational system implementation—this repo focuses on the physics/control feasibility and the requirements that fall out of that analysis.
 
 ## Repository Contents
 
+High level:
 - Concept-level physics models for:
-  - Electrodynamic tether forces
-  - Orbital energy exchange
-  - Gravity and basic propulsion assumptions
-- Numerical and visualization tools for inspecting system behavior over time
+  - Electrodynamic tether forces / Lorentz authority
+  - Orbital energy exchange and scaling behavior
+  - Gravity and simplified environmental assumptions
+- Numerical and visualization tools for inspecting system behavior over time :contentReference[oaicite:1]{index=1}
 
-## Numeric Simulation Core (v3.1)
+### Numeric Simulation Core (v3.1)
 
-The directory `glide_v3_1/` contains a non-visual, numerically stable simulation core
-intended for engineering analysis and energy accounting.
+The directory `glide_v3_1/` contains a non-visual, numerically stable simulation core intended for engineering analysis and energy accounting. :contentReference[oaicite:2]{index=2}
 
 This core focuses on:
 - Explicit energy tracking
 - Stability under stiff tether dynamics
-- Separation of configuration, integration, and subsystem models
+- Separation of configuration, integration, and subsystem models :contentReference[oaicite:3]{index=3}
 
-See `glide_v3_1/README.md` for details and usage instructions.
+See `glide_v3_1/README.md` for details and usage instructions. :contentReference[oaicite:4]{index=4}
+
+## Where to start
+
+If you are new here:
+1) Start with the top-level docs in each versioned directory (e.g., `glide_v3_1/README.md`).
+2) For V4 work, look for directories/configs/scripts that reference:
+   - “tagged transfer”, “dispersion recovery”, “terminal capture”
+   - gate terminology: `R_ACQ`, `R_COR`, `R_PRE`, `R_LATCH`
+   - Monte Carlo runners / result CSVs / validation summaries
 
 ## Notes
 
-This codebase is under active development. Assumptions are made explicit and may
-change as the model evolves.
-
+This codebase is under active development; assumptions are made explicit and may change as the model evolves. :contentReference[oaicite:5]{index=5}
